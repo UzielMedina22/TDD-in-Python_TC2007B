@@ -64,6 +64,35 @@ class TestCompra(unittest.TestCase):
         self.assertNotEqual(len(orden3.lista), res3)
         self.assertEqual(len(orden4.lista), 0)
         self.assertEqual(len(orden4.lista), 0)
+    
+    def test_delete_items(self):
+        # 1. Entradas.
+        orden = Orden()
+        p1 = Producto("Dona", 6.0)
+        p2 = Producto("Baguette", 25.0)
+        p3 = Producto("Bolillo", 4.0)
+        p4 = Producto("Bolillo", 4.0)
+
+        orden.agregar_producto(p1)
+        orden.agregar_producto(p2)
+        orden.agregar_producto(p3)
+        orden.agregar_producto(p4)
+
+        # 2. Resultados esperados.
+        res1 = True                     # se elimina Dona correctamente.
+        res2 = 3                        # quedan 3 productos tras eliminar Dona.
+        res3 = True                     # se elimina el primer Bolillo.
+        res4 = 2                        # quedan 2 productos tras eliminar un Bolillo.
+        res5 = False                    # no se puede eliminar un producto que no existe.
+        res6 = ["Baguette", "Bolillo"]  # productos restantes al final.
+
+        # 3. Pruebas.
+        self.assertEqual(orden.eliminar_producto("Dona"), res1)
+        self.assertEqual(len(orden.lista), res2)
+        self.assertEqual(orden.eliminar_producto("Bolillo"), res3)
+        self.assertEqual(len(orden.lista), res4)
+        self.assertEqual(orden.eliminar_producto("Concha"), res5)
+        self.assertListEqual([p.nombre for p in orden.lista], res6)
 
 
 # Correr los casos de prueba.
