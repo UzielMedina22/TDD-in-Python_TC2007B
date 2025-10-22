@@ -33,3 +33,12 @@ class Orden():
     def agregar_producto(self, p: Producto):
         if p.nombre.strip() != "" and p.precio > 0.0:
             self.lista.append(p)
+
+    # Eliminar un producto por nombre. T: O(n), E: O(1)
+    def eliminar_producto(self, nombre: str):
+        for i, producto in enumerate(self.lista):
+            if producto.nombre == nombre:
+                del self.lista[i]
+                return True  # se elimino con éxito
+            
+        return False # no se encontró el producto para eliminar
