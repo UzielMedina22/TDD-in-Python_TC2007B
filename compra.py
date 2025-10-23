@@ -42,3 +42,17 @@ class Orden():
                 return True  # se elimino con éxito
             
         return False # no se encontró el producto para eliminar
+    
+    def calcular_subtotal(self) -> float:
+        total = 0.0
+        for producto in self.lista:
+            total += producto.precio
+        return total
+    
+    def calcular_descuento(self, porcentaje: float) -> float:
+        subtotal = self.calcular_subtotal()
+        descuento = subtotal * (porcentaje / 100)
+        subtotal_con_descuento = subtotal - descuento
+        return subtotal_con_descuento
+
+    

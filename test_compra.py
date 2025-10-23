@@ -93,6 +93,34 @@ class TestCompra(unittest.TestCase):
         self.assertEqual(len(orden.lista), res4)
         self.assertEqual(orden.eliminar_producto("Concha"), res5)
         self.assertListEqual([p.nombre for p in orden.lista], res6)
+        
+        # Prueba de cálculo de subtotal y descuento
+    def setUp(self):
+        self.carrito = Orden()
+        self.carrito.agregar_producto(Producto("Camisa", 200))
+        self.carrito.agregar_producto(Producto("Pantalón", 300))
+
+    def test_subtotal_sin_descuento(self):
+        self.assertEqual(self.carrito.calcular_subtotal(), 500)
+
+    def test_descuento_10_por_ciento(self):
+        resultado = self.carrito.calcular_descuento(10)
+        self.assertAlmostEqual(resultado, 450.0)
+
+    def test_descuento_0_por_ciento(self):
+        resultado = self.carrito.calcular_descuento(0)
+        self.assertEqual(resultado, 500.0)
+
+    def test_descuento_50_por_ciento(self):
+        resultado = self.carrito.calcular_descuento(50)
+        self.assertEqual(resultado, 250.0)
+
+    def test_carrito_vacio(self):
+        carrito_vacio = Orden()
+        resultado = carrito_vacio.calcular_descuento(10)
+        self.assertEqual(resultado, 0.0)
+
+        
 
 
 # Correr los casos de prueba.
