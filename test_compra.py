@@ -56,7 +56,7 @@ class TestCompra(unittest.TestCase):
         # 2. Resultados esperados.
         res1 = 1                        # Se agregó un producto en la orden 1.
         res2 = "Bolillo"                # Se ubica correctamente el segundo producto agregado a la orden 2.
-        res3 = 5                        # Se obtiene la longitud de la orden 3, después de agregarse 5 productos.
+        res3 = 5                        # Se espera que el tamaño de la lista de la orden 3 sea menor a 5.
         res4 = 0                        # No se pudo agregar un producto sin nombre (cadena vacía o con espacios).
         res5 = 0                        # No se pudo agregar un producto con precio negativo.
 
@@ -152,4 +152,5 @@ Referencias:
 
 - Forrester, R. (2024, 28 octubre). Python Destructors: A Complete Guide. Medium. Recuperado el 20 de octubre de 2025, de 
   https://medium.com/@ryan_forrester_/python-destructors-a-complete-guide-6e276cc5e7a9
+
 """
