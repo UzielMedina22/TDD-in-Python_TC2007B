@@ -94,7 +94,23 @@ class TestCompra(unittest.TestCase):
         self.assertEqual(orden.eliminar_producto("Concha"), res5)
         self.assertListEqual([p.nombre for p in orden.lista], res6)
         
-        # Prueba de cálculo de subtotal y descuento
+    #Prueba de cálculo de subtotal
+    def test_calcular_subtotal(self):
+        orden = Orden()
+        p1 = Producto("Producto1", 100.0)
+        p2 = Producto("Producto2", 200.0)
+        p3 = Producto("Producto3", 50.0)
+
+        orden.agregar_producto(p1)
+        orden.agregar_producto(p2)
+        orden.agregar_producto(p3)
+
+        resultado = orden.calcular_subtotal()
+        self.assertEqual(resultado, 350.0)
+        self.assertNotEqual(resultado, 300.0)
+        self.assertAlmostEqual(resultado, 350.0)
+
+    # Prueba de cálculo de descuento
     def setUp(self):
         self.carrito = Orden()
         self.carrito.agregar_producto(Producto("Camisa", 200))
