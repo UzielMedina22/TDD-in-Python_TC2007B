@@ -56,16 +56,14 @@ class TestCompra(unittest.TestCase):
         # 2. Resultados esperados.
         res1 = 1                        # Se agregó un producto en la orden 1.
         res2 = "Bolillo"                # Se ubica correctamente el segundo producto agregado a la orden 2.
-        res3 = 5                        # Se espera que el tamaño de la lista de la orden 3 sea menor a 5.
-        res4 = 0                        # No se pudo agregar un producto sin nombre (cadena vacía o con espacios).
-        res5 = 0                        # No se pudo agregar un producto con precio negativo.
+        res3 = 5                        # Se espera que el tamaño de la lista de la orden 3 sea menor a 5, al agregar solo 3 productos.
+        res4 = 0                        # No se pudo agregar un producto sin nombre (cadena vacía o con espacios) ni otro con precio negativo.
 
         # 3. Pruebas.
         self.assertEqual(len(orden1.lista), res1)
         self.assertEqual(orden2.lista[1].nombre, res2)
         self.assertNotEqual(len(orden3.lista), res3)
         self.assertEqual(len(orden4.lista), res4)
-        self.assertEqual(len(orden4.lista), res5)
     
     # Casos de prueba al eliminar un producto.
     def test_eliminar_producto(self):
@@ -154,3 +152,4 @@ Referencias:
   https://medium.com/@ryan_forrester_/python-destructors-a-complete-guide-6e276cc5e7a9
 
 """
+
