@@ -13,7 +13,7 @@ pipeline {
                 bat """
                     ${PYTHON} -m venv ${VENV_DIR}
                     call ${VENV_DIR}\\Scripts\\activate
-                    pip install --upgrade pip
+                    ${PYTHON} -m pip install --upgrade pip
                 """
             }
         }
