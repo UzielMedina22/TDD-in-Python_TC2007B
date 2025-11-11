@@ -33,6 +33,7 @@ pipeline {
                 echo 'Ejecutando pruebas con pytest...'
                 bat '''
                     call %VENV_DIR%\\Scripts\\activate
+                    set PYTHONPATH=%CD%
                     pytest -v --maxfail=1 --disable-warnings
                 '''
             }
