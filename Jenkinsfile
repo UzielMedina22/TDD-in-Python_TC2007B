@@ -11,9 +11,9 @@ pipeline {
             steps {
                 echo 'Configurando entorno virtual...'
                 bat '''
-                    ${PYTHON} -m venv ${VENV_DIR}
-                    call ${VENV_DIR}\\Scripts\\activate
-                    ${PYTHON} -m pip install --upgrade pip
+                    %PYTHON% -m venv %VENV_DIR%
+                    call %VENV_DIR%\\Scripts\\activate
+                    %PYTHON% -m pip install --upgrade pip
                 '''
             }
         }
@@ -22,7 +22,7 @@ pipeline {
             steps {
                 echo 'Instalando dependencias...'
                 bat '''
-                    call ${VENV_DIR}\\Scripts\\activate
+                    call %VENV_DIR%\\Scripts\\activate
                     pip install pytest
                 '''
             }
@@ -32,7 +32,7 @@ pipeline {
             steps {
                 echo 'Ejecutando pruebas con pytest...'
                 bat '''
-                    call ${VENV_DIR}\\Scripts\\activate
+                    call %VENV_DIR%\\Scripts\\activate
                     pytest -v --maxfail=1 --disable-warnings
                 '''
             }
@@ -42,7 +42,7 @@ pipeline {
     post {
         always {
             echo 'Limpiando entorno virtual...'
-            bat 'rmdir /s /q ${VENV_DIR} || echo No se encontró el entorno virtual.'
+            bat 'rmdir /s /q %VENV_DIR% || echo No se encontró el entorno virtual.'
         }
         success {
             echo 'Todas las pruebas pasaron correctamente.'
